@@ -22,6 +22,9 @@ const Contact = () => {
           console.log(error.text);
         }
       );
+    if (form.current) {
+      form.current.reset();
+    }
   };
   return (
     <div
