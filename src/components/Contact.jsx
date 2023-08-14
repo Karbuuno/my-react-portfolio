@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const form = useRef();
@@ -15,11 +17,11 @@ const Contact = () => {
       )
       .then(
         result => {
-          console.log(result.text);
-          console.log("Massage sent");
+          console.log(result);
+          toast.success("Massage sent");
         },
         error => {
-          console.log(error.text);
+          toast.error("Please fill in all the fields");
         }
       );
     if (form.current) {
@@ -48,16 +50,19 @@ const Contact = () => {
             <input
               type='text'
               name='name'
+              required
               placeholder='Enter your name'
               className='p-2 bg-transparent border-2 rounded-md text-white focus:outline-none'
             />
             <input
+              required
               type='text'
               name='email'
               placeholder='Enter your email'
               className='my-4 p-2 bg-transparent border-2 rounded-md text-white focus:outline-none'
             />
             <textarea
+              required
               name='message'
               placeholder='Enter your message'
               rows='10'
@@ -70,6 +75,7 @@ const Contact = () => {
             >
               Let's talk
             </button>
+            <ToastContainer />
           </form>
         </div>
       </div>
